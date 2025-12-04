@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cine Paris | Films</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="topbar">
+      <div class="logo">Cine Paris</div>
+      <nav class="nav">
+        <a href="index.html">Accueil</a>
+        <a href="films.html" class="active">Films</a>
+        <a href="cinemas.html">Cinemas</a>
+        <a href="admin-login.html">Back-office</a>
+      </nav>
+    </div>
+    <div class="hero__content">
+      <p class="eyebrow">Programmation</p>
+      <h1>Films par ville</h1>
+      <p class="subtitle">Filtrez par ville pour voir les seances disponibles.</p>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="card">
+      <header class="card__header">
+        <div>
+          <p class="eyebrow">Filtre</p>
+          <h2>Choisir une ville</h2>
+        </div>
+      </header>
+      <form id="films-filter-form" class="inline-form">
+        <input name="city" type="text" placeholder="Paris">
+        <button class="button" type="submit">Rechercher</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <header class="card__header">
+        <div>
+          <p class="eyebrow">Resultats</p>
+          <h2>Films</h2>
+        </div>
+      </header>
+      <div id="films-list" class="cards-list"></div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal__backdrop"></div>
+    <div class="modal__dialog">
+      <button class="modal__close" aria-label="Fermer" id="modal-close">×</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="common.js"></script>
+  <script src="films.js"></script>
+</body>
+</html>

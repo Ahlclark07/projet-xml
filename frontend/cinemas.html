@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cine Paris | Cinemas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="topbar">
+      <div class="logo">Cine Paris</div>
+      <nav class="nav">
+        <a href="index.html">Accueil</a>
+        <a href="films.html">Films</a>
+        <a href="cinemas.html" class="active">Cinemas</a>
+        <a href="admin-login.html">Back-office</a>
+      </nav>
+    </div>
+    <div class="hero__content">
+      <p class="eyebrow">Salles</p>
+      <h1>Liste des cinemas</h1>
+      <p class="subtitle">Cliquez sur une salle pour en voir les details.</p>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="card">
+      <header class="card__header">
+        <div>
+          <p class="eyebrow">Salles</p>
+          <h2>Tous les cinemas</h2>
+        </div>
+        <div class="actions">
+          <button id="load-cinemas" class="button ghost">Actualiser</button>
+        </div>
+      </header>
+      <div id="cinemas-list" class="cards-list"></div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal__backdrop"></div>
+    <div class="modal__dialog">
+      <button class="modal__close" aria-label="Fermer" id="modal-close">×</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="common.js"></script>
+  <script src="cinemas.js"></script>
+</body>
+</html>

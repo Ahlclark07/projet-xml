@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cine Paris | Connexion admin</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="topbar">
+      <div class="logo">Cine Paris</div>
+      <nav class="nav">
+        <a href="index.html">Accueil</a>
+        <a href="films.html">Films</a>
+        <a href="cinemas.html">Cinemas</a>
+        <a href="admin-login.html" class="active">Back-office</a>
+      </nav>
+    </div>
+    <div class="hero__content">
+      <p class="eyebrow">Connexion</p>
+      <h1>Espace administrateur</h1>
+      <p class="subtitle">Identifiez-vous avec un nom d'utilisateur et un mot de passe. La cle X-API-Key sera enregistree en cookie.</p>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="card">
+      <header class="card__header">
+        <div>
+          <p class="eyebrow">Connexion</p>
+          <h2>Authentification admin</h2>
+          <p class="muted small">POST /auth/login</p>
+        </div>
+      </header>
+      <form id="login-form" class="stack">
+        <label class="field">
+          <span>Nom d'utilisateur</span>
+          <input name="username" type="text" placeholder="user1" required>
+        </label>
+        <label class="field">
+          <span>Mot de passe</span>
+          <input name="password" type="password" placeholder="secret" required>
+        </label>
+        <button type="submit" class="button">Se connecter</button>
+        <p class="status" id="login-result"></p>
+      </form>
+    </section>
+
+    <section class="card">
+      <header class="card__header">
+        <div>
+          <p class="eyebrow">Back-office</p>
+          <h2>Acceder</h2>
+        </div>
+      </header>
+      <p class="muted small">Apres connexion reussie, le back-office utilisera automatiquement la cle stockee.</p>
+      <a class="button ghost" href="admin.html">Aller au back-office</a>
+      <a class="muted small" href="index.html">Retour a l'accueil</a>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="common.js"></script>
+  <script src="admin-login.js"></script>
+</body>
+</html>

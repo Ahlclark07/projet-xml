@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cine Paris | Back-office</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="topbar">
+      <div class="logo">Cine Paris</div>
+      <nav class="nav">
+        <a href="index.html">Accueil</a>
+        <a href="films.html">Films</a>
+        <a href="cinemas.html">Cinemas</a>
+        <a href="admin-login.html">Back-office</a>
+      </nav>
+    </div>
+    <div class="hero__content">
+      <p class="eyebrow">Administration</p>
+      <h1>Gerer les programmations</h1>
+      <p class="subtitle">Creez cinemas, films, seances. Necessite la cle admin en cookie (connectez-vous d'abord).</p>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="card">
+      <header class="card__header">
+        <div>
+          <p class="eyebrow">Cinemas</p>
+          <h2>Creer un cinema</h2>
+        </div>
+      </header>
+      <form id="cinema-create-form" class="grid two">
+        <label class="field">
+          <span>Nom</span>
+          <input name="name" type="text" placeholder="UGC Lyon" required>
+        </label>
+        <label class="field">
+          <span>Ville</span>
+          <input name="city" type="text" placeholder="Paris" required>
+        </label>
+        <label class="field">
+          <span>Adresse</span>
+          <input name="address" type="text" placeholder="12 Rue X" required>
+        </label>
+        <div class="actions">
+          <button type="submit" class="button">Creer</button>
+        </div>
+      </form>
+      <p class="status" id="cinema-create-result"></p>
+    </section>
+
+    <section class="card">
+      <header class="card__header">
+        <div>
+          <p class="eyebrow">Films</p>
+          <h2>Creer / mettre a jour</h2>
+        </div>
+      </header>
+      <form id="film-form" class="grid two">
+        <label class="field">
+          <span>ID (PUT)</span>
+          <input name="filmId" type="number" min="1" placeholder="Optionnel">
+        </label>
+        <label class="field">
+          <span>Titre</span>
+          <input name="title" type="text" placeholder="Inception" required>
+        </label>
+        <label class="field">
+          <span>Duree (minutes)</span>
+          <input name="duration_minutes" type="number" min="1" placeholder="148" required>
+        </label>
+        <label class="field">
+          <span>Langue</span>
+          <input name="language" type="text" placeholder="VO" required>
+        </label>
+        <label class="field">
+          <span>Sous-titres</span>
+          <input name="subtitles" type="text" placeholder="VF">
+        </label>
+        <label class="field">
+          <span>Realisateur</span>
+          <input name="director" type="text" placeholder="Christopher Nolan" required>
+        </label>
+        <label class="field">
+          <span>Acteurs principaux</span>
+          <input name="main_cast" type="text" placeholder="Acteurs..." required>
+        </label>
+        <label class="field">
+          <span>Age minimum</span>
+          <input name="min_age" type="number" min="0" placeholder="12">
+        </label>
+        <label class="field">
+          <span>Date debut</span>
+          <input name="start_date" type="date" required>
+        </label>
+        <label class="field">
+          <span>Date fin</span>
+          <input name="end_date" type="date" required>
+        </label>
+        <label class="field">
+          <span>ID cinema</span>
+          <input name="cinema_id" type="number" min="1" placeholder="1" required>
+        </label>
+        <label class="field">
+          <span>Affiche (image_url)</span>
+          <input name="image_url" type="url" placeholder="https://exemple.com/affiche.jpg">
+        </label>
+
+        <div class="field">
+          <div class="label-row">
+            <span>Seances (remplacees en PUT/POST)</span>
+            <button type="button" id="add-seance" class="button ghost small">Ajouter</button>
+          </div>
+          <div id="seances-list" class="stack"></div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="button">Envoyer</button>
+        </div>
+      </form>
+      <p class="status" id="film-form-result"></p>
+    </section>
+
+    <section class="card">
+      <header class="card__header">
+        <div>
+          <p class="eyebrow">Seances</p>
+          <h2>Ajouter des seances (sans ecraser)</h2>
+          <p class="muted small">POST /films/{id}/seances</p>
+        </div>
+      </header>
+      <form id="seance-add-form" class="stack">
+        <label class="field">
+          <span>ID film</span>
+          <input name="filmId" type="number" min="1" placeholder="1" required>
+        </label>
+        <div id="seances-list-extra" class="stack"></div>
+        <button type="button" id="add-seance-extra" class="button ghost small">Ajouter une seance</button>
+        <div class="actions">
+          <button type="submit" class="button">Ajouter</button>
+        </div>
+      </form>
+      <p class="status" id="seance-add-result"></p>
+    </section>
+
+    <section class="card">
+      <header class="card__header">
+        <div>
+          <p class="eyebrow">Suppression</p>
+          <h2>Supprimer un film</h2>
+        </div>
+      </header>
+      <form id="delete-film-form" class="inline-form">
+        <input name="filmId" type="number" min="1" placeholder="ID film" required>
+        <button type="submit" class="button danger">DELETE</button>
+      </form>
+      <p class="status" id="delete-film-result"></p>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="common.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

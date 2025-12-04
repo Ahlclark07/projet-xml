@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cine Paris | Accueil</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="topbar">
+      <div class="logo">Cine Paris</div>
+      <nav class="nav">
+        <a href="index.html" class="active">Accueil</a>
+        <a href="films.html">Films</a>
+        <a href="cinemas.html">Cinemas</a>
+        <a href="admin-login.html">Back-office</a>
+      </nav>
+    </div>
+    <div class="hero__content">
+      <p class="eyebrow">Programmation</p>
+      <h1>Films et salles parisiennes</h1>
+      <p class="subtitle">Consultez les films, horaires et cinemas. Les admins peuvent gerer les programmations via le back-office.</p>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="card">
+      <header class="card__header">
+        <div>
+          <p class="eyebrow">Navigation</p>
+          <h2>Explorer</h2>
+        </div>
+      </header>
+      <div class="grid two">
+        <div class="mini-card">
+          <h3>Films</h3>
+          <p class="muted small">Voir les films et leurs seances par ville.</p>
+          <a class="button ghost" href="films.html">Ouvrir</a>
+        </div>
+        <div class="mini-card">
+          <h3>Cinemas</h3>
+          <p class="muted small">Decouvrir les salles et leurs adresses.</p>
+          <a class="button ghost" href="cinemas.html">Ouvrir</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="common.js"></script>
+</body>
+</html>
