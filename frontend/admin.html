@@ -53,16 +53,12 @@
       <p class="status" id="cinema-create-result"></p>
     </section>
 
-    <!-- Create/Update Film -->
+    <!-- Create Film -->
     <section class="card">
       <div class="section-header">
-        <h2>Film : Création / Modification</h2>
+        <h2>Créer un Film</h2>
       </div>
-      <form id="film-form" class="grid two">
-        <label class="field">
-          <span>ID (Laisser vide pour Créer)</span>
-          <input name="filmId" type="number" min="1" placeholder="Automatique si vide">
-        </label>
+      <form id="film-create-form" class="grid two">
         <label class="field">
           <span>Titre</span>
           <input name="title" type="text" placeholder="Ex: Inception" required>
@@ -111,16 +107,89 @@
         <div class="field" style="grid-column: 1/-1;">
           <div class="label-row" style="display: flex; justify-content: space-between; margin-bottom: 8px;">
             <span>Séances (Initiales)</span>
-            <button type="button" id="add-seance" class="button ghost small">Ajouter une ligne</button>
+            <button type="button" id="add-seance-create" class="button ghost small">Ajouter une ligne</button>
           </div>
-          <div id="seances-list" class="stack"></div>
+          <div id="seances-list-create" class="stack"></div>
         </div>
 
         <div class="actions" style="grid-column: 1/-1;">
-          <button type="submit" class="button">Enregistrer le film</button>
+          <button type="submit" class="button">Créer le film</button>
         </div>
       </form>
-      <p class="status" id="film-form-result"></p>
+      <p class="status" id="film-create-result"></p>
+    </section>
+
+    <!-- Update Film -->
+    <section class="card">
+      <div class="section-header">
+        <h2>Modifier un Film</h2>
+      </div>
+      <form id="film-edit-form" class="grid two">
+        <label class="field" style="grid-column: 1/-1;">
+          <span>Choisir le film à modifier</span>
+          <select name="filmId" required id="film-select-edit">
+            <option value="">Chargement des films...</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Titre</span>
+          <input name="title" type="text" placeholder="Ex: Inception" required>
+        </label>
+        <label class="field">
+          <span>Durée (min)</span>
+          <input name="duration_minutes" type="number" min="1" placeholder="148" required>
+        </label>
+        <label class="field">
+          <span>Langue</span>
+          <input name="language" type="text" placeholder="VO" required>
+        </label>
+        <label class="field">
+          <span>Sous-titres</span>
+          <input name="subtitles" type="text" placeholder="VF">
+        </label>
+        <label class="field">
+          <span>Réalisateur</span>
+          <input name="director" type="text" placeholder="Christopher Nolan" required>
+        </label>
+        <label class="field">
+          <span>Acteurs principaux</span>
+          <input name="main_cast" type="text" placeholder="Acteurs..." required>
+        </label>
+        <label class="field">
+          <span>Age minimum</span>
+          <input name="min_age" type="number" min="0" placeholder="12">
+        </label>
+        <label class="field">
+          <span>Date début</span>
+          <input name="start_date" type="date" required>
+        </label>
+        <label class="field">
+          <span>Date fin</span>
+          <input name="end_date" type="date" required>
+        </label>
+        <label class="field">
+          <span>ID Cinéma</span>
+          <input name="cinema_id" type="number" min="1" placeholder="1" required>
+        </label>
+        <label class="field">
+          <span>URL Affiche</span>
+          <input name="image_url" type="url" placeholder="https://...">
+        </label>
+
+        <div class="field" style="grid-column: 1/-1;">
+          <div class="label-row" style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <span>Séances (Remplacement total)</span>
+            <button type="button" id="add-seance-edit" class="button ghost small">Ajouter une ligne</button>
+          </div>
+          <div id="seances-list-edit" class="stack"></div>
+        </div>
+
+        <div class="actions" style="grid-column: 1/-1;">
+          <button type="submit" class="button">Enregistrer les modifications</button>
+        </div>
+      </form>
+      <p class="status" id="film-edit-result"></p>
     </section>
 
     <!-- Add Sessions to existing film -->
