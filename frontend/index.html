@@ -13,41 +13,47 @@
       <nav class="nav">
         <a href="index.html" class="active">Accueil</a>
         <a href="films.html">Films</a>
-        <a href="cinemas.html">Cinemas</a>
-        <a href="admin-login.html">Back-office</a>
+        <a href="cinemas.html">Cinémas</a>
+        <a href="admin-login.html">Admin</a>
       </nav>
     </div>
     <div class="hero__content">
-      <p class="eyebrow">Programmation</p>
-      <h1>Films et salles parisiennes</h1>
-      <p class="subtitle">Consultez les films, horaires et cinemas. Les admins peuvent gerer les programmations via le back-office.</p>
+      <p class="eyebrow">Programmation 2025</p>
+      <h1>Le meilleur du cinéma<br>à Paris</h1>
+      <p class="subtitle">Découvrez les derniers films à l'affiche et trouvez votre séance dans nos salles partenaires.</p>
+      <div class="actions">
+        <a href="films.html" class="button">Voir les films</a>
+        <a href="cinemas.html" class="button ghost">Nos cinémas</a>
+      </div>
     </div>
   </header>
 
   <main class="layout">
-    <section class="card">
-      <header class="card__header">
-        <div>
-          <p class="eyebrow">Navigation</p>
-          <h2>Explorer</h2>
-        </div>
-      </header>
-      <div class="grid two">
-        <div class="mini-card">
-          <h3>Films</h3>
-          <p class="muted small">Voir les films et leurs seances par ville.</p>
-          <a class="button ghost" href="films.html">Ouvrir</a>
-        </div>
-        <div class="mini-card">
-          <h3>Cinemas</h3>
-          <p class="muted small">Decouvrir les salles et leurs adresses.</p>
-          <a class="button ghost" href="cinemas.html">Ouvrir</a>
-        </div>
+    <section>
+      <div class="section-header">
+        <h2>À l'affiche</h2>
+        <a href="films.html" class="link-more">Tout voir &rarr;</a>
+      </div>
+      <div id="home-films-grid" class="grid four">
+        <!-- Films will be injected here by home.js -->
+        <div class="card" style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">Chargement des films...</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <h2>Nos Salles</h2>
+        <a href="cinemas.html" class="link-more">Tout voir &rarr;</a>
+      </div>
+      <div id="home-cinemas-grid" class="grid three">
+        <!-- Cinemas will be injected here by home.js -->
+        <div class="card" style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">Chargement des cinémas...</div>
       </div>
     </section>
   </main>
 
   <div id="toast" class="toast hidden"></div>
   <script src="common.js"></script>
+  <script src="home.js"></script>
 </body>
 </html>

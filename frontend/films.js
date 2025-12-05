@@ -21,28 +21,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const renderFilmCard = (film) => {
     const duration = film.duration_minutes
       ? `${film.duration_minutes} min`
-      : "Duree inconnue";
+      : "Durée inconnue";
     const img = film.image_url || placeholderImg;
     return `
       <article class="film-card" data-film-id="${film.id}">
-        <img src="${img}" alt="${film.title || "Affiche"}">
-        <div class="film-card__header">
-          <div>
-            <h3>${film.title || "Sans titre"}</h3>
-            <p class="muted small">${film.language || "N/A"} ${
-      film.subtitles ? ` - ST: ${film.subtitles}` : ""
-    }</p>
+        <img src="${img}" alt="${film.title || "Affiche"}" class="film-poster">
+        <div class="film-content">
+          <div class="film-title">${film.title || "Sans titre"}</div>
+          <div class="film-meta">
+            <span>${duration}</span>
+            <span>•</span>
+            <span>${film.language || "N/A"}</span>
           </div>
-          <button class="button ghost small" data-detail="${
-            film.id
-          }">Details</button>
+          <div class="tags">
+             ${film.min_age ? `<span class="tag">-${film.min_age}</span>` : ""}
+             ${film.subtitles ? `<span class="tag">ST: ${film.subtitles}</span>` : ""}
+          </div>
+          <button class="button ghost small" data-detail="${film.id}" style="margin-top: 12px; width: 100%;">Détails</button>
         </div>
-        <p class="muted small">Realisateur : ${film.director || "?"}</p>
-        <p class="muted small">Acteurs : ${film.main_cast || "?"}</p>
-        <p class="muted small">Du ${film.start_date || "?"} au ${
-      film.end_date || "?"
-    } - ${duration}</p>
-        <div class="seances">${renderSeances(film.seances)}</div>
       </article>
     `;
   };

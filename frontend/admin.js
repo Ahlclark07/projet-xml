@@ -24,6 +24,41 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  // --- New Logic: Load Films for Select ---
+  const loadFilmsForSelect = async () => {
+    const selects = document.querySelectorAll("select[name='filmId']");
+    if (!selects.length) return;
+
+    // Add loading state
+    selects.forEach(s => s.innerHTML = '<option value="">Chargement...</option>');
+
+    try {
+      const data = await apiFetch("/films");
+      const films = Array.isArray(data) ? data : data?.films || [];
+      
+      const optionsHtml = films.length 
+        ? `<option value="">-- Choisir un film --</option>` + 
+          films.map(f => `<option value="${f.id}">${f.title} (ID: ${f.id})</option>`).join("")
+        : '<option value="">Aucun film disponible</option>';
+
+      selects.forEach(s => s.innerHTML = optionsHtml);
+    } catch (err) {
+      console.error("Error loading films for select:", err);
+      selects.forEach(s => s.innerHTML = '<option value="">Erreur de chargement</option>');
+      showToast("Impossible de charger la liste des films", "bad");
+    }
+  };
+
+  // Load films initially
+  loadFilmsForSelect();
+
+  // Refresh films list when a film is created/deleted
+  window.addEventListener("storage", (e) => {
+    if (e.key === "refreshFilms") {
+      loadFilmsForSelect();
+    }
+  });
+
   // Creer un cinema
   document.getElementById("cinema-create-form")?.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -123,7 +158,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await apiFetch(path, { method, body: payload, requireKey: true });
       setStatus(filmFormResult, `${filmId ? "Film mis a jour" : "Film cree"} (#${data?.id || filmId || "?"})`);
       showToast(filmId ? "Film mis a jour" : "Film cree", "ok");
+      showToast(filmId ? "Film mis a jour" : "Film cree", "ok");
       markRefresh("refreshFilms");
+      // Reload selects locally too
+      loadFilmsForSelect();
     } catch (err) {
       handleError(filmFormResult, err);
     }
@@ -168,7 +206,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await apiFetch(`/films/${id}`, { method: "DELETE", requireKey: true });
       setStatus(deleteFilmResult, data?.detail || "Film supprime");
       showToast("Film supprime", "ok");
+      showToast("Film supprime", "ok");
       markRefresh("refreshFilms");
+      // Reload selects locally too
+      loadFilmsForSelect();
     } catch (err) {
       handleError(deleteFilmResult, err);
     }

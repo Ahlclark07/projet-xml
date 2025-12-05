@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cine Paris | Back-office</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <header class="hero">
     <div class="topbar">
@@ -13,63 +15,60 @@
       <nav class="nav">
         <a href="index.html">Accueil</a>
         <a href="films.html">Films</a>
-        <a href="cinemas.html">Cinemas</a>
-        <a href="admin-login.html">Back-office</a>
+        <a href="cinemas.html">Cinémas</a>
+        <a href="admin-login.html" class="active">Admin</a>
       </nav>
     </div>
     <div class="hero__content">
       <p class="eyebrow">Administration</p>
-      <h1>Gerer les programmations</h1>
-      <p class="subtitle">Creez cinemas, films, seances. Necessite la cle admin en cookie (connectez-vous d'abord).</p>
+      <h1>Gestion du Contenu</h1>
+      <p class="subtitle">Créez et modifiez les cinémas, films et séances.</p>
     </div>
   </header>
 
   <main class="layout">
+
+    <!-- Create Cinema -->
     <section class="card">
-      <header class="card__header">
-        <div>
-          <p class="eyebrow">Cinemas</p>
-          <h2>Creer un cinema</h2>
-        </div>
-      </header>
-      <form id="cinema-create-form" class="grid two">
+      <div class="section-header">
+        <h2>Créer un Cinéma</h2>
+      </div>
+      <form id="cinema-create-form" class="grid three">
         <label class="field">
           <span>Nom</span>
-          <input name="name" type="text" placeholder="UGC Lyon" required>
+          <input name="name" type="text" placeholder="Ex: UGC Lyon" required>
         </label>
         <label class="field">
           <span>Ville</span>
-          <input name="city" type="text" placeholder="Paris" required>
+          <input name="city" type="text" placeholder="Ex: Paris" required>
         </label>
         <label class="field">
           <span>Adresse</span>
-          <input name="address" type="text" placeholder="12 Rue X" required>
+          <input name="address" type="text" placeholder="Ex: 12 Rue X" required>
         </label>
-        <div class="actions">
-          <button type="submit" class="button">Creer</button>
+        <div class="actions" style="grid-column: 1/-1;">
+          <button type="submit" class="button">Créer le cinéma</button>
         </div>
       </form>
       <p class="status" id="cinema-create-result"></p>
     </section>
 
+    <!-- Create/Update Film -->
     <section class="card">
-      <header class="card__header">
-        <div>
-          <p class="eyebrow">Films</p>
-          <h2>Creer / mettre a jour</h2>
-        </div>
-      </header>
+      <div class="section-header">
+        <h2>Film : Création / Modification</h2>
+      </div>
       <form id="film-form" class="grid two">
         <label class="field">
-          <span>ID (PUT)</span>
-          <input name="filmId" type="number" min="1" placeholder="Optionnel">
+          <span>ID (Laisser vide pour Créer)</span>
+          <input name="filmId" type="number" min="1" placeholder="Automatique si vide">
         </label>
         <label class="field">
           <span>Titre</span>
-          <input name="title" type="text" placeholder="Inception" required>
+          <input name="title" type="text" placeholder="Ex: Inception" required>
         </label>
         <label class="field">
-          <span>Duree (minutes)</span>
+          <span>Durée (min)</span>
           <input name="duration_minutes" type="number" min="1" placeholder="148" required>
         </label>
         <label class="field">
@@ -81,7 +80,7 @@
           <input name="subtitles" type="text" placeholder="VF">
         </label>
         <label class="field">
-          <span>Realisateur</span>
+          <span>Réalisateur</span>
           <input name="director" type="text" placeholder="Christopher Nolan" required>
         </label>
         <label class="field">
@@ -93,7 +92,7 @@
           <input name="min_age" type="number" min="0" placeholder="12">
         </label>
         <label class="field">
-          <span>Date debut</span>
+          <span>Date début</span>
           <input name="start_date" type="date" required>
         </label>
         <label class="field">
@@ -101,61 +100,68 @@
           <input name="end_date" type="date" required>
         </label>
         <label class="field">
-          <span>ID cinema</span>
+          <span>ID Cinéma</span>
           <input name="cinema_id" type="number" min="1" placeholder="1" required>
         </label>
         <label class="field">
-          <span>Affiche (image_url)</span>
-          <input name="image_url" type="url" placeholder="https://exemple.com/affiche.jpg">
+          <span>URL Affiche</span>
+          <input name="image_url" type="url" placeholder="https://...">
         </label>
 
-        <div class="field">
-          <div class="label-row">
-            <span>Seances (remplacees en PUT/POST)</span>
-            <button type="button" id="add-seance" class="button ghost small">Ajouter</button>
+        <div class="field" style="grid-column: 1/-1;">
+          <div class="label-row" style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <span>Séances (Initiales)</span>
+            <button type="button" id="add-seance" class="button ghost small">Ajouter une ligne</button>
           </div>
           <div id="seances-list" class="stack"></div>
         </div>
 
-        <div class="actions">
-          <button type="submit" class="button">Envoyer</button>
+        <div class="actions" style="grid-column: 1/-1;">
+          <button type="submit" class="button">Enregistrer le film</button>
         </div>
       </form>
       <p class="status" id="film-form-result"></p>
     </section>
 
+    <!-- Add Sessions to existing film -->
     <section class="card">
-      <header class="card__header">
-        <div>
-          <p class="eyebrow">Seances</p>
-          <h2>Ajouter des seances (sans ecraser)</h2>
-          <p class="muted small">POST /films/{id}/seances</p>
-        </div>
-      </header>
+      <div class="section-header">
+        <h2>Ajouter des Séances</h2>
+        <p class="muted small">Ajoute sans écraser les existantes</p>
+      </div>
       <form id="seance-add-form" class="stack">
         <label class="field">
-          <span>ID film</span>
-          <input name="filmId" type="number" min="1" placeholder="1" required>
+          <span>Choisir le film</span>
+          <!-- Changed from input to select -->
+          <select name="filmId" required id="film-select-add">
+            <option value="">Chargement des films...</option>
+          </select>
         </label>
+
         <div id="seances-list-extra" class="stack"></div>
-        <button type="button" id="add-seance-extra" class="button ghost small">Ajouter une seance</button>
+
         <div class="actions">
-          <button type="submit" class="button">Ajouter</button>
+          <button type="button" id="add-seance-extra" class="button ghost small">Ajouter une ligne</button>
+          <button type="submit" class="button">Valider l'ajout</button>
         </div>
       </form>
       <p class="status" id="seance-add-result"></p>
     </section>
 
+    <!-- Delete Film -->
     <section class="card">
-      <header class="card__header">
-        <div>
-          <p class="eyebrow">Suppression</p>
-          <h2>Supprimer un film</h2>
-        </div>
-      </header>
-      <form id="delete-film-form" class="inline-form">
-        <input name="filmId" type="number" min="1" placeholder="ID film" required>
-        <button type="submit" class="button danger">DELETE</button>
+      <div class="section-header">
+        <h2>Supprimer un film</h2>
+      </div>
+      <form id="delete-film-form" class="inline-form" style="align-items: flex-end;">
+        <label class="field" style="flex: 1;">
+          <span>Choisir le film à supprimer</span>
+          <!-- Changed from input to select -->
+          <select name="filmId" required id="film-select-delete">
+            <option value="">Chargement des films...</option>
+          </select>
+        </label>
+        <button type="submit" class="button danger">Supprimer</button>
       </form>
       <p class="status" id="delete-film-result"></p>
     </section>
@@ -165,4 +171,5 @@
   <script src="common.js"></script>
   <script src="admin.js"></script>
 </body>
+
 </html>

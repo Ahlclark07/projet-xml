@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cine Paris | Cinemas</title>
+  <title>Cine Paris | Cinémas</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <header class="hero">
     <div class="topbar">
@@ -13,29 +15,24 @@
       <nav class="nav">
         <a href="index.html">Accueil</a>
         <a href="films.html">Films</a>
-        <a href="cinemas.html" class="active">Cinemas</a>
-        <a href="admin-login.html">Back-office</a>
+        <a href="cinemas.html" class="active">Cinémas</a>
+        <a href="admin-login.html">Admin</a>
       </nav>
     </div>
     <div class="hero__content">
       <p class="eyebrow">Salles</p>
-      <h1>Liste des cinemas</h1>
-      <p class="subtitle">Cliquez sur une salle pour en voir les details.</p>
+      <h1>Nos Salles Partenaires</h1>
+      <p class="subtitle">Découvrez les cinémas parisiens où voir vos films préférés.</p>
     </div>
   </header>
 
   <main class="layout">
-    <section class="card">
-      <header class="card__header">
-        <div>
-          <p class="eyebrow">Salles</p>
-          <h2>Tous les cinemas</h2>
-        </div>
-        <div class="actions">
-          <button id="load-cinemas" class="button ghost">Actualiser</button>
-        </div>
-      </header>
-      <div id="cinemas-list" class="cards-list"></div>
+    <section>
+      <div class="section-header">
+        <h2>Tous les cinémas</h2>
+        <button id="load-cinemas" class="button ghost small">Actualiser</button>
+      </div>
+      <div id="cinemas-list" class="grid three"></div>
     </section>
   </main>
 
@@ -51,4 +48,5 @@
   <script src="common.js"></script>
   <script src="cinemas.js"></script>
 </body>
+
 </html>

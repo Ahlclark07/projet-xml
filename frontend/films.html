@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cine Paris | Films</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <header class="hero">
     <div class="topbar">
@@ -13,39 +15,37 @@
       <nav class="nav">
         <a href="index.html">Accueil</a>
         <a href="films.html" class="active">Films</a>
-        <a href="cinemas.html">Cinemas</a>
-        <a href="admin-login.html">Back-office</a>
+        <a href="cinemas.html">Cinémas</a>
+        <a href="admin-login.html">Admin</a>
       </nav>
     </div>
     <div class="hero__content">
       <p class="eyebrow">Programmation</p>
-      <h1>Films par ville</h1>
-      <p class="subtitle">Filtrez par ville pour voir les seances disponibles.</p>
+      <h1>Films à l'affiche</h1>
+      <p class="subtitle">Retrouvez tous les films et séances disponibles dans nos salles.</p>
     </div>
   </header>
 
   <main class="layout">
-    <section class="card">
-      <header class="card__header">
-        <div>
-          <p class="eyebrow">Filtre</p>
-          <h2>Choisir une ville</h2>
-        </div>
-      </header>
-      <form id="films-filter-form" class="inline-form">
-        <input name="city" type="text" placeholder="Paris">
-        <button class="button" type="submit">Rechercher</button>
-      </form>
+    <section>
+      <div class="section-header">
+        <h2>Rechercher</h2>
+      </div>
+      <div class="card">
+        <form id="films-filter-form" class="inline-form">
+          <div class="field" style="flex: 1;">
+            <input name="city" type="text" placeholder="Filtrer par ville (ex: Paris)">
+          </div>
+          <button class="button" type="submit">Rechercher</button>
+        </form>
+      </div>
     </section>
 
-    <section class="card">
-      <header class="card__header">
-        <div>
-          <p class="eyebrow">Resultats</p>
-          <h2>Films</h2>
-        </div>
-      </header>
-      <div id="films-list" class="cards-list"></div>
+    <section>
+      <div class="section-header">
+        <h2>Résultats</h2>
+      </div>
+      <div id="films-list" class="grid four"></div>
     </section>
   </main>
 
@@ -61,4 +61,5 @@
   <script src="common.js"></script>
   <script src="films.js"></script>
 </body>
+
 </html>

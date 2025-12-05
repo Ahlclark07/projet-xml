@@ -8,15 +8,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalClose = document.getElementById("modal-close");
 
   const renderCinemaCard = (cinema) => `
-    <article class="film-card" data-cinema-id="${cinema.id}">
-      <div class="film-card__header">
+    <article class="card" data-cinema-id="${cinema.id}">
+      <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
         <div>
-          <h3>${cinema.name}</h3>
-          <p class="muted small">${cinema.city}</p>
+          <h3 style="color: #fff; font-size: 1.2rem;">${cinema.name}</h3>
+          <p class="eyebrow" style="margin-top: 4px; display: inline-block;">${cinema.city}</p>
         </div>
-        <button class="button ghost small" data-detail="${cinema.id}">Voir</button>
       </div>
-      <p class="muted small">${cinema.address}</p>
+      <p class="muted" style="font-size: 0.9rem; margin-bottom: 16px;">${cinema.address}</p>
+      <button class="button ghost small" data-detail="${cinema.id}" style="width: 100%;">Voir les détails</button>
     </article>
   `;
 
